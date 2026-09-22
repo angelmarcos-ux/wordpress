@@ -30,6 +30,31 @@ body {
     color: var(--lum-text);
     background: var(--lum-cream);
     -webkit-font-smoothing: antialiased;
+    line-height: 1.65;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Universal section padding — consistent vertical rhythm */
+.lum-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+.lum-section-tight {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+@media (max-width: 980px) {
+    .lum-section { padding-top: 80px; padding-bottom: 80px; }
+    .lum-section-tight { padding-top: 56px; padding-bottom: 56px; }
+}
+@media (max-width: 599px) {
+    .lum-section { padding-top: 64px; padding-bottom: 64px; }
+    .lum-section-tight { padding-top: 44px; padding-bottom: 44px; }
 }
 
 .elementor-heading-title {
@@ -262,6 +287,9 @@ body {
     flex-direction: column;
     justify-content: center;
     position: relative;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    overflow: hidden;
 }
 .lum-hero::before {
     content: "";
@@ -274,10 +302,30 @@ body {
 .lum-hero > .elementor-container {
     position: relative;
     z-index: 2;
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding-left: 32px;
+    padding-right: 32px;
 }
-.lum-hero .lum-hero-inner { padding-top: 150px; }
-.lum-hero-title { text-shadow: 0 6px 30px rgba(10,22,38,0.45); }
-.lum-hero-sub { text-shadow: 0 3px 18px rgba(10,22,38,0.5); }
+.lum-hero .lum-hero-inner {
+    padding-top: 120px;
+    padding-bottom: 40px;
+}
+.lum-hero-title {
+    text-shadow: 0 6px 30px rgba(10,22,38,0.45);
+    margin-top: 20px;
+    margin-bottom: 28px;
+}
+.lum-hero-sub {
+    text-shadow: 0 3px 18px rgba(10,22,38,0.5);
+    margin-bottom: 44px;
+    max-width: 640px;
+    font-size: 17px;
+    line-height: 1.75;
+    opacity: 0.94;
+}
 .lum-hero-ctas .elementor-widget-wrap {
     flex-direction: row;
     flex-wrap: wrap;
@@ -292,8 +340,26 @@ body {
 .lum-hero-ctas .elementor-widget-button { flex: 0 0 auto; }
 .lum-hero-ctas .elementor-widget { margin-bottom: 0; }
 @media (max-width: 980px) {
-    .lum-hero { min-height: 92vh; }
-    .lum-hero .lum-hero-inner { padding-top: 120px; }
+    .lum-hero {
+        min-height: 92vh;
+        padding-top: 60px;
+        padding-bottom: 80px;
+    }
+    .lum-hero .lum-hero-inner {
+        padding-top: 96px;
+        padding-bottom: 24px;
+    }
+    .lum-hero > .elementor-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .lum-hero-sub { margin-bottom: 36px; font-size: 16px; }
+}
+@media (max-width: 599px) {
+    .lum-hero { min-height: 88vh; padding-top: 40px; padding-bottom: 60px; }
+    .lum-hero .lum-hero-inner { padding-top: 80px; padding-bottom: 16px; }
+    .lum-hero-title { margin-top: 16px; margin-bottom: 20px; }
+    .lum-hero-sub { margin-bottom: 32px; }
 }
 
 /* Secondary / ghost button */
@@ -314,22 +380,133 @@ body {
     color: var(--lum-ink);
 }
 
+/* CRITICAL FALLBACK: Elementor widgets placed directly inside .lum-card
+   (without a dedicated .lum-card-body wrapper) get consistent inner padding.
+   This matches the live editor output in the screenshots. */
+.lum-card > .elementor-widget-wrap,
+.lum-card > .elementor-widget-container,
+.lum-card > .elementor-inner,
+.lum-card > .elementor-section-wrap,
+.lum-card .elementor-element:not(.lum-card-img):not(.elementor-section):not(.elementor-inner-section) {
+    /* Widget-level content inherits card-body padding via the parent rule below */
+}
+.lum-card .elementor-widget-wrap,
+.lum-card > .elementor-widget-container > *:not(.lum-card-img),
+.lum-card-inner,
+.lum-card .elementor-container:has(.lum-card-meta, .lum-card-title, .lum-card-excerpt, .lum-card-read) {
+    padding: 32px 32px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex: 1 1 auto;
+}
+/* Keep the image flush — remove padding for its container */
+.lum-card .elementor-widget:has(> .elementor-widget-container > .lum-card-img),
+.lum-card .elementor-widget.elementor-widget-image,
+.lum-card .elementor-widget:has(img) {
+    padding: 0 !important;
+}
+.lum-card .elementor-widget-wrap:has(.lum-card-img, img) {
+    padding: 0 !important;
+    gap: 0 !important;
+}
+.lum-card .lum-card-img + *,
+.lum-card .elementor-widget:has(img) + .elementor-widget .elementor-widget-container,
+.lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:not(:first-child) .elementor-widget-container {
+    padding-left: 32px;
+    padding-right: 32px;
+}
+.lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:not(:first-child):last-child .elementor-widget-container {
+    padding-bottom: 30px;
+}
+.lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:nth-child(2) .elementor-widget-container {
+    padding-top: 32px;
+}
+@media (max-width: 980px) {
+    .lum-card .elementor-widget-wrap,
+    .lum-card > .elementor-widget-container > *:not(.lum-card-img),
+    .lum-card-inner,
+    .lum-card .elementor-container:has(.lum-card-meta, .lum-card-title, .lum-card-excerpt, .lum-card-read) {
+        padding: 28px 28px 26px;
+    }
+    .lum-card .lum-card-img + *,
+    .lum-card .elementor-widget:has(img) + .elementor-widget .elementor-widget-container,
+    .lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:not(:first-child) .elementor-widget-container {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+    .lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:nth-child(2) .elementor-widget-container {
+        padding-top: 28px;
+    }
+    .lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:not(:first-child):last-child .elementor-widget-container {
+        padding-bottom: 26px;
+    }
+}
+@media (max-width: 599px) {
+    .lum-card .elementor-widget-wrap,
+    .lum-card > .elementor-widget-container > *:not(.lum-card-img),
+    .lum-card-inner,
+    .lum-card .elementor-container:has(.lum-card-meta, .lum-card-title, .lum-card-excerpt, .lum-card-read) {
+        padding: 24px 22px 24px;
+    }
+    .lum-card .lum-card-img + *,
+    .lum-card .elementor-widget:has(img) + .elementor-widget .elementor-widget-container,
+    .lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:not(:first-child) .elementor-widget-container {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    .lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:nth-child(2) .elementor-widget-container {
+        padding-top: 24px;
+    }
+    .lum-card .elementor-widget-wrap:has(img, .lum-card-img) .elementor-widget:not(:first-child):last-child .elementor-widget-container {
+        padding-bottom: 24px;
+    }
+}
+
 /* ------------------------------------------------------------------
    Stats band
    ------------------------------------------------------------------ */
-.lum-stat .elementor-widget-container { text-align: center; }
+.lum-stat-band {
+    padding-top: 72px;
+    padding-bottom: 72px;
+}
+.lum-stat .elementor-widget-container { text-align: center; padding: 20px 12px; }
 .lum-stat-num span { color: var(--lum-ink); }
 .lum-stat-num {
     font-family: var(--lum-head), serif;
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 10px;
 }
 .lum-stat-label {
     letter-spacing: 0.24em;
     text-transform: uppercase;
+    font-size: 12px;
+    color: var(--lum-text);
+}
+.lum-stat-band .elementor-container {
+    row-gap: 24px;
+    column-gap: 32px;
+}
+@media (max-width: 980px) {
+    .lum-stat-band { padding-top: 56px; padding-bottom: 56px; }
+    .lum-stat-num { font-size: 44px; }
+}
+@media (max-width: 767px) {
+    .lum-stat-band { padding-top: 44px; padding-bottom: 44px; }
+    .lum-stat .elementor-widget-container { padding: 14px 8px; }
 }
 
 /* ------------------------------------------------------------------
    About
    ------------------------------------------------------------------ */
+.lum-about-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+.lum-about-content .elementor-widget-container {
+    padding-right: 20px;
+}
 .lum-about-img {
     position: relative;
 }
@@ -340,6 +517,7 @@ body {
 .lum-about-img img {
     border-radius: 4px 40px 4px 4px;
     box-shadow: var(--lum-shadow);
+    display: block;
 }
 .lum-about-img::before {
     content: "";
@@ -389,9 +567,59 @@ body {
     color: var(--lum-ink);
 }
 
+@media (max-width: 980px) {
+    .lum-about-section { padding-top: 80px; padding-bottom: 80px; }
+    .lum-about-content .elementor-widget-container { padding-right: 0; padding-bottom: 24px; }
+}
+@media (max-width: 599px) {
+    .lum-about-section { padding-top: 64px; padding-bottom: 64px; }
+}
+
 /* ------------------------------------------------------------------
-   Article cards
+   Article cards + Journal grid
    ------------------------------------------------------------------ */
+
+/* Journal grid — consistent gaps between cards via Elementor columns */
+.lum-journal-grid,
+.lum-journal-grid > .elementor-container {
+    gap: 32px;
+}
+.lum-journal-grid .elementor-column.elementor-col-33,
+.lum-journal-grid .elementor-column {
+    padding: 0 !important;
+}
+.lum-journal-grid > .elementor-container > .elementor-column,
+[class*="lum-"].elementor-section .elementor-column.elementor-widget-wrap,
+.lum-card-grid,
+.lum-card-grid > .elementor-widget-wrap {
+    gap: 32px;
+}
+/* Column-level fallback — ensures no-touch even without a grid class */
+.elementor-widget-container:has(> .lum-card) {
+    margin-bottom: 0 !important;
+}
+.elementor-section.elementor-top-section:has(.lum-card) .elementor-container {
+    column-gap: 32px;
+    row-gap: 32px;
+}
+.elementor-section.elementor-top-section:has(.lum-card) .elementor-container > .elementor-column {
+    padding: 0 !important;
+}
+@media (max-width: 1024px) {
+    .lum-journal-grid > .elementor-container,
+    .elementor-section.elementor-top-section:has(.lum-card) .elementor-container {
+        column-gap: 24px;
+        row-gap: 28px;
+    }
+}
+@media (max-width: 767px) {
+    .lum-journal-grid > .elementor-container,
+    .elementor-section.elementor-top-section:has(.lum-card) .elementor-container {
+        column-gap: 0;
+        row-gap: 24px;
+    }
+}
+
 .lum-card {
     height: 100%;
     background: var(--lum-white);
@@ -399,30 +627,68 @@ body {
     overflow: hidden;
     box-shadow: var(--lum-soft-shadow);
     transition: transform 0.45s cubic-bezier(.22,.61,.36,1), box-shadow 0.45s ease;
+    display: flex;
+    flex-direction: column;
 }
 .lum-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--lum-shadow);
 }
-.lum-card-img { overflow: hidden; }
+.lum-card-img { overflow: hidden; flex: 0 0 auto; }
 .lum-card-img img {
     width: 100%;
-    height: 240px;
+    height: 260px;
     object-fit: cover;
     transform: scale(1.01);
     transition: transform 0.7s cubic-bezier(.22,.61,.36,1);
+    display: block;
 }
 .lum-card:hover .lum-card-img img { transform: scale(1.09); }
+
+/* Internal card body padding — the KEY fix the user requested */
+.lum-card-body {
+    flex: 1 1 auto;
+    padding: 32px 32px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+@media (max-width: 980px) {
+    .lum-card-body { padding: 28px 28px 26px; }
+}
+@media (max-width: 599px) {
+    .lum-card-body { padding: 24px 22px 24px; }
+}
+
 .lum-card-meta {
     font-size: 11px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--lum-gold);
     font-weight: 500;
+    margin: 0;
+    line-height: 1;
 }
-.lum-card-title h3 { margin: 10px 0 12px; }
-.lum-card-title a { color: var(--lum-ink); }
+.lum-card-title { margin: 0; }
+.lum-card-title h3 {
+    margin: 0;
+    font-family: var(--lum-head), serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+    color: var(--lum-ink);
+}
+.lum-card-title a { color: var(--lum-ink); text-decoration: none; }
 .lum-card-title a:hover { color: var(--lum-gold-2); }
+
+.lum-card-excerpt {
+    margin: 2px 0 0;
+    color: var(--lum-text);
+    font-size: 15.5px;
+    line-height: 1.7;
+}
+
 .lum-card-read {
     display: inline-flex;
     align-items: center;
@@ -434,6 +700,9 @@ body {
     color: var(--lum-ink);
     text-decoration: none;
     transition: color 0.3s ease, gap 0.3s ease;
+    margin-top: auto;
+    padding-top: 8px;
+    width: fit-content;
 }
 .lum-card-read::after {
     content: "→";
@@ -447,8 +716,27 @@ body {
 }
 
 /* ------------------------------------------------------------------
-   Journal section number / decor
+   Journal section
    ------------------------------------------------------------------ */
+.lum-journal-section {
+    padding-top: 120px;
+    padding-bottom: 130px;
+    position: relative;
+    overflow: hidden;
+}
+.lum-journal-section .elementor-container:first-of-type {
+    margin-bottom: 56px;
+}
+@media (max-width: 980px) {
+    .lum-journal-section { padding-top: 80px; padding-bottom: 90px; }
+    .lum-journal-section .elementor-container:first-of-type { margin-bottom: 44px; }
+}
+@media (max-width: 599px) {
+    .lum-journal-section { padding-top: 64px; padding-bottom: 72px; }
+    .lum-journal-section .elementor-container:first-of-type { margin-bottom: 36px; }
+}
+
+/* Journal section number / decor */
 .lum-journal-num {
     font-family: var(--lum-head), serif;
     font-size: 180px;
@@ -456,15 +744,135 @@ body {
     font-weight: 600;
     color: rgba(18,35,58,0.06);
     position: absolute;
-    top: -40px;
+    top: 20px;
     right: 8%;
     pointer-events: none;
     user-select: none;
+    z-index: 0;
+}
+.lum-journal-section > .elementor-container {
+    position: relative;
+    z-index: 1;
+}
+@media (max-width: 980px) {
+    .lum-journal-num { font-size: 120px; top: 0; right: 4%; }
+}
+@media (max-width: 599px) {
+    .lum-journal-num { font-size: 80px; top: -10px; right: 16px; }
+}
+
+/* ================================================================
+   SIMPLEST & MOST RELIABLE CARD PADDING FIX
+   — works in all browsers, no :has() selector needed —
+   Elementor widget structure inside .lum-card:
+   .lum-card > .elementor-widget-wrap > .elementor-widget > .elementor-widget-container
+   First widget is usually the image (flush, no padding).
+   All following widgets get consistent horizontal padding.
+   Second widget gets top padding; last widget gets bottom padding.
+   ================================================================ */
+.lum-card > .elementor-widget-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    flex-wrap: nowrap;
+}
+
+/* First widget (image) — FLUSH, no padding */
+.lum-card > .elementor-widget-wrap > .elementor-widget:first-child,
+.lum-card > .elementor-widget-wrap > .elementor-widget:first-child > .elementor-widget-container {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.lum-card > .elementor-widget-wrap > .elementor-widget:first-child img {
+    display: block;
+}
+
+/* All widgets AFTER the first one — HORIZONTAL padding */
+.lum-card > .elementor-widget-wrap > .elementor-widget:not(:first-child) > .elementor-widget-container {
+    padding-left: 32px;
+    padding-right: 32px;
+    margin: 0;
+}
+
+/* Second widget — TOP padding (first widget after the image) */
+.lum-card > .elementor-widget-wrap > .elementor-widget:nth-child(2) > .elementor-widget-container {
+    padding-top: 32px;
+}
+
+/* Last widget — BOTTOM padding */
+.lum-card > .elementor-widget-wrap > .elementor-widget:last-child > .elementor-widget-container {
+    padding-bottom: 32px;
+}
+
+/* Single widget case (all padding) */
+.lum-card > .elementor-widget-wrap > .elementor-widget:only-child > .elementor-widget-container {
+    padding: 32px !important;
+}
+
+/* Consistent vertical rhythm between card content widgets */
+.lum-card > .elementor-widget-wrap > .elementor-widget:not(:first-child) {
+    margin-top: 0;
+    margin-bottom: 14px;
+}
+.lum-card > .elementor-widget-wrap > .elementor-widget:last-child {
+    margin-bottom: 0;
+}
+
+/* Tablet card padding */
+@media (max-width: 980px) {
+    .lum-card > .elementor-widget-wrap > .elementor-widget:not(:first-child) > .elementor-widget-container {
+        padding-left: 28px;
+        padding-right: 28px;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:nth-child(2) > .elementor-widget-container {
+        padding-top: 28px;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:last-child > .elementor-widget-container {
+        padding-bottom: 28px;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:only-child > .elementor-widget-container {
+        padding: 28px !important;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:not(:first-child) {
+        margin-bottom: 12px;
+    }
+}
+
+/* Mobile card padding */
+@media (max-width: 599px) {
+    .lum-card > .elementor-widget-wrap > .elementor-widget:not(:first-child) > .elementor-widget-container {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:nth-child(2) > .elementor-widget-container {
+        padding-top: 24px;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:last-child > .elementor-widget-container {
+        padding-bottom: 24px;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:only-child > .elementor-widget-container {
+        padding: 24px 22px !important;
+    }
+    .lum-card > .elementor-widget-wrap > .elementor-widget:not(:first-child) {
+        margin-bottom: 10px;
+    }
 }
 
 /* ------------------------------------------------------------------
    Footer
    ------------------------------------------------------------------ */
+.lum-footer-section {
+    padding-top: 90px;
+    padding-bottom: 30px;
+}
+.lum-foot-bottom {
+    padding-top: 26px;
+    padding-bottom: 26px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(246, 242, 234, 0.12);
+}
 .lum-footer [class*="elementor-icon-list"] .elementor-icon-list-text { color: rgba(246,242,234,0.75); }
 .lum-footer .elementor-icon-list-item a:hover .elementor-icon-list-text { color: var(--lum-gold); }
 .lum-foot-head {
@@ -473,7 +881,7 @@ body {
     letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--lum-gold) !important;
-    margin-bottom: 4px;
+    margin-bottom: 14px;
 }
 .lum-social .elementor-grid-item .elementor-social-icon {
     background: rgba(246,242,234,0.1);
@@ -486,15 +894,15 @@ body {
 }
 .lum-footer .lum-logo { color: #fff; }
 .lum-footer .lum-logo:hover { color: #fff; }
-.lum-foot-bottom {
-    border-top: 1px solid rgba(246, 242, 234, 0.12);
-}
 .lum-foot-cta .elementor-widget-container {
     display: flex;
     justify-content: flex-end;
 }
 @media (max-width: 767px) {
     .lum-foot-cta .elementor-widget-container { justify-content: flex-start; }
+    .lum-footer-section { padding-top: 64px; }
+    .lum-foot-bottom { margin-top: 36px; padding-top: 22px; padding-bottom: 22px; }
+    .lum-foot-head { margin-bottom: 10px; }
 }
 
 /* Elementor spacing reset for tightly packed footer rows */
@@ -504,4 +912,30 @@ body {
 /* Global button polish */
 .elementor-button {
     transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease !important;
+    border-radius: 999px;
+}
+.elementor-button:hover {
+    transform: translateY(-2px);
+}
+.elementor-button:active {
+    transform: translateY(0);
+}
+
+/* Column content container — ensure consistent horizontal gutters on all sections */
+.elementor-section:not(.lum-hero):not(.lum-footer-section) .elementor-container {
+    max-width: 1320px;
+    padding-left: 32px;
+    padding-right: 32px;
+}
+@media (max-width: 980px) {
+    .elementor-section:not(.lum-hero):not(.lum-footer-section) .elementor-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+@media (max-width: 599px) {
+    .elementor-section:not(.lum-hero):not(.lum-footer-section) .elementor-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
 }
