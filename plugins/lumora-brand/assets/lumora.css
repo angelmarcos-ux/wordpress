@@ -716,6 +716,123 @@ body {
 }
 
 /* ------------------------------------------------------------------
+   Hero Search Bar (Glassmorphism)
+   ------------------------------------------------------------------ */
+.lum-hero-search {
+    margin-top: 48px;
+    max-width: 680px;
+}
+.lum-hero-search form {
+    display: flex;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(246, 242, 234, 0.15);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 999px;
+    padding: 8px 8px 8px 28px;
+    align-items: center;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+.lum-hero-search form:focus-within {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(201, 162, 95, 0.5);
+}
+.lum-hero-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: var(--lum-body);
+    font-size: 16px;
+    outline: none;
+    padding: 10px 0;
+}
+.lum-hero-search input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+.lum-hero-search button {
+    background: var(--lum-gold);
+    color: var(--lum-ink);
+    border: none;
+    border-radius: 999px;
+    padding: 16px 36px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+}
+.lum-hero-search button:hover {
+    background: var(--lum-gold-2);
+    color: #fff;
+    transform: translateY(-2px);
+}
+@media (max-width: 599px) {
+    .lum-hero-search form {
+        flex-direction: column;
+        border-radius: 24px;
+        padding: 16px;
+        gap: 12px;
+    }
+    .lum-hero-search input {
+        width: 100%;
+        text-align: center;
+    }
+    .lum-hero-search button {
+        width: 100%;
+    }
+}
+
+/* ------------------------------------------------------------------
+   Listings Cards Specifics
+   ------------------------------------------------------------------ */
+.lum-card-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(18, 35, 58, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    z-index: 10;
+}
+.lum-listing-price {
+    font-family: var(--lum-head), serif;
+    font-size: 26px;
+    color: var(--lum-gold);
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+.lum-listing-specs {
+    display: flex;
+    gap: 18px;
+    font-size: 13px;
+    color: var(--lum-text);
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(18, 35, 58, 0.08);
+}
+.lum-listing-specs span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+.lum-listing-specs span strong {
+    color: var(--lum-ink);
+    font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
    Journal section
    ------------------------------------------------------------------ */
 .lum-journal-section {
@@ -938,4 +1055,49 @@ body {
         padding-left: 18px;
         padding-right: 18px;
     }
+}
+
+/* ===================================================================
+   SINGLE POST STYLING (JOURNAL ARTICLES)
+   =================================================================== */
+.single-post .site-main {
+    max-width: 860px;
+    margin: 140px auto 100px;
+    padding: 0 24px;
+}
+.single-post .page-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+.single-post .entry-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.1;
+    color: var(--lum-navy, #12233A);
+    letter-spacing: -0.015em;
+    margin: 0 auto;
+    max-width: 760px;
+}
+.single-post .page-content {
+    font-family: var(--lum-body, 'Inter', sans-serif);
+    font-size: 18.5px;
+    line-height: 1.85;
+    color: var(--lum-text, #47525F);
+}
+.single-post .page-content p {
+    margin-bottom: 32px;
+}
+.single-post .page-content strong {
+    color: var(--lum-navy, #12233A);
+    font-weight: 600;
+}
+.lum-post-hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 550px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 64px;
+    box-shadow: 0 30px 60px -30px rgba(18,35,58,0.3);
 }

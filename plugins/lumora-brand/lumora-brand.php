@@ -44,6 +44,9 @@ function lumora_img( $key ) {
         'journal_3'   => $base . 'landscape_4_3&prompt=' . urlencode( 'Elegant transitional luxury living room, soft grey velvet sofa with throw pillows, ebony wood media console, round glass coffee table with black metal base, cream shag rug, windows with floor to ceiling silk curtains, pendant lamp, sophisticated family room interior, photorealistic, 8k' ),
         'about'       => $base . 'portrait_4_3&prompt=' . urlencode( 'Confident sophisticated female real estate founder in tailored cream blazer, standing in luxury villa interior with soft natural window light, selective focus, warm tones, professional portrait photography, photorealistic, 8k' ),
         'hero_bg'     => $base . 'landscape_16_9&prompt=' . urlencode( 'Luxury modern house with swimming pool at sunset, palm trees, outdoor terrace, glass walls, blue and gold sky, professional photography, photorealistic 8k' ),
+        'list_1'      => $base . 'landscape_4_3&prompt=' . urlencode( 'Ultra luxury modern hillside mansion exterior, infinity edge pool reflecting sunset, floor-to-ceiling glass walls, warm interior lighting, professional architectural photography, 8k, photorealistic' ),
+        'list_2'      => $base . 'landscape_4_3&prompt=' . urlencode( 'Exclusive luxury penthouse interior, panoramic city skyline view at dusk, elegant modern furniture, dark wood floors, designer lighting, professional interior photography, 8k, photorealistic' ),
+        'list_3'      => $base . 'landscape_4_3&prompt=' . urlencode( 'Signature contemporary riverside estate exterior, minimalist architecture, lush manicured gardens, expansive glass facade, bright blue sky, professional real estate photography, 8k, photorealistic' ),
     );
     return isset( $map[ $key ] ) ? $map[ $key ] : '';
 }
@@ -109,12 +112,22 @@ function lumora_hero() {
                         </p>
                     </div>
                 </div>
-                <div class="elementor-widget elementor-widget-button" data-lum-reveal data-lum-delay="240">
+                
+                <div class="elementor-widget lum-hero-search" data-lum-reveal data-lum-delay="220">
                     <div class="elementor-widget-container">
-                        <a href="#journal" class="elementor-button lum-cta" style="background:#C9A25F;color:#12233A;padding:18px 38px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;border-radius:999px;text-decoration:none;display:inline-block;">Explore Listings</a>
+                        <form action="#" method="GET">
+                            <input type="text" name="q" placeholder="Search by neighborhood, ZIP, or lifestyle..." />
+                            <button type="submit">Search Properties</button>
+                        </form>
                     </div>
                 </div>
-                <div class="elementor-widget elementor-widget-button lum-btn-ghost" data-lum-reveal data-lum-delay="300">
+                
+                <div class="elementor-widget elementor-widget-button" data-lum-reveal data-lum-delay="280" style="margin-top: 32px;">
+                    <div class="elementor-widget-container">
+                        <a href="#listings" class="elementor-button lum-cta" style="background:#C9A25F;color:#12233A;padding:18px 38px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;border-radius:999px;text-decoration:none;display:inline-block;">Exclusive Mandates</a>
+                    </div>
+                </div>
+                <div class="elementor-widget elementor-widget-button lum-btn-ghost" data-lum-reveal data-lum-delay="340" style="margin-top: 32px;">
                     <div class="elementor-widget-container">
                         <a href="#about" class="elementor-button" style="background:transparent;border:1px solid rgba(246,242,234,0.5);color:#fff !important;padding:18px 38px;font-weight:500;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;border-radius:999px;text-decoration:none;display:inline-block;">Our Story</a>
                     </div>
@@ -167,6 +180,116 @@ function lumora_stats() {
     return ob_get_clean();
 }
 add_shortcode( 'lumora_stats', 'lumora_stats' );
+
+/* ===================================================================
+   EXCLUSIVE LISTINGS — Institutional Grade Property Grid
+   =================================================================== */
+function lumora_listings() {
+    ob_start(); ?>
+    <section id="listings" class="lum-section elementor-section" style="background:#F6F2EA;">
+        <div class="elementor-container" style="max-width:1320px;margin:0 auto;margin-bottom: 56px;">
+            <div class="elementor-widget-wrap" style="display:flex;justify-content:space-between;align-items:flex-end;width:100%;">
+                <div style="max-width: 600px;">
+                    <div class="elementor-widget" data-lum-reveal>
+                        <div class="elementor-widget-container">
+                            <span class="lum-eyebrow">Exclusive Mandates</span>
+                            <h2 class="elementor-heading-title" style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(36px,4.8vw,56px);line-height:1.08;color:#12233A;margin:18px 0 0;letter-spacing:-0.01em;">
+                                Private <span class="lum-gold-italic">Collections</span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementor-widget" data-lum-reveal data-lum-delay="120" style="display:none; /* visible on desktop */">
+                    <a href="#contact" style="font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;border-bottom:1px solid #C9A25F;padding-bottom:4px;">View All Properties</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="elementor-container" style="max-width:1320px;margin:0 auto;">
+            <div class="elementor-widget-wrap lum-card-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;width:100%;">
+
+                <!-- LISTING 1 -->
+                <article class="lum-card elementor-widget" data-lum-reveal>
+                    <div class="elementor-widget-wrap">
+                        <div class="elementor-widget" style="position:relative;">
+                            <div class="lum-card-badge">Off-Market</div>
+                            <div class="elementor-widget-container lum-card-img">
+                                <img src="<?php echo esc_url( lumora_img('list_1') ); ?>" alt="Modern hillside mansion" style="width:100%;height:320px;object-fit:cover;"/>
+                            </div>
+                        </div>
+                        <div class="elementor-widget">
+                            <div class="elementor-widget-container" style="padding-top:10px;">
+                                <div class="lum-listing-price">$14,500,000</div>
+                                <h3 style="font-family:var(--lum-body);font-weight:500;font-size:18px;color:#12233A;margin:0;">The Summit Estate</h3>
+                                <div style="color:var(--lum-text);font-size:14px;margin-top:4px;">Pacific Palisades</div>
+                                
+                                <div class="lum-listing-specs">
+                                    <span><strong>6</strong> Beds</span>
+                                    <span><strong>8</strong> Baths</span>
+                                    <span><strong>12,500</strong> SqFt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- LISTING 2 -->
+                <article class="lum-card elementor-widget" data-lum-reveal data-lum-delay="80">
+                    <div class="elementor-widget-wrap">
+                        <div class="elementor-widget" style="position:relative;">
+                            <div class="lum-card-badge">New Listing</div>
+                            <div class="elementor-widget-container lum-card-img">
+                                <img src="<?php echo esc_url( lumora_img('list_2') ); ?>" alt="Luxury penthouse" style="width:100%;height:320px;object-fit:cover;"/>
+                            </div>
+                        </div>
+                        <div class="elementor-widget">
+                            <div class="elementor-widget-container" style="padding-top:10px;">
+                                <div class="lum-listing-price">$8,900,000</div>
+                                <h3 style="font-family:var(--lum-body);font-weight:500;font-size:18px;color:#12233A;margin:0;">The Crown Penthouse</h3>
+                                <div style="color:var(--lum-text);font-size:14px;margin-top:4px;">Downtown Financial District</div>
+                                
+                                <div class="lum-listing-specs">
+                                    <span><strong>4</strong> Beds</span>
+                                    <span><strong>4.5</strong> Baths</span>
+                                    <span><strong>6,200</strong> SqFt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- LISTING 3 -->
+                <article class="lum-card elementor-widget" data-lum-reveal data-lum-delay="160">
+                    <div class="elementor-widget-wrap">
+                        <div class="elementor-widget" style="position:relative;">
+                            <div class="lum-card-badge" style="background:var(--lum-gold);">Signature</div>
+                            <div class="elementor-widget-container lum-card-img">
+                                <img src="<?php echo esc_url( lumora_img('list_3') ); ?>" alt="Contemporary estate" style="width:100%;height:320px;object-fit:cover;"/>
+                            </div>
+                        </div>
+                        <div class="elementor-widget">
+                            <div class="elementor-widget-container" style="padding-top:10px;">
+                                <div class="lum-listing-price" style="font-size:22px;margin-top:4px;">Price Upon Request</div>
+                                <h3 style="font-family:var(--lum-body);font-weight:500;font-size:18px;color:#12233A;margin:0;">Riverside Contemporary</h3>
+                                <div style="color:var(--lum-text);font-size:14px;margin-top:4px;">The Riverside Quarter</div>
+                                
+                                <div class="lum-listing-specs">
+                                    <span><strong>5</strong> Beds</span>
+                                    <span><strong>6</strong> Baths</span>
+                                    <span><strong>8,000</strong> SqFt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode( 'lumora_listings', 'lumora_listings' );
 
 /* ===================================================================
    ABOUT SECTION — founder bio, real photo, 28yr badge, signature
@@ -281,7 +404,11 @@ function lumora_journal() {
                         </div>
                         <div class="elementor-widget">
                             <div class="elementor-widget-container">
-                                <a href="#" class="lum-card-read" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;">Read Article</a>
+                                <?php
+                                $post_1 = get_page_by_title('Five Architectural Details That Hold Their Value', OBJECT, 'post');
+                                $url_1 = $post_1 ? get_permalink($post_1->ID) : '#';
+                                ?>
+                                <a href="<?php echo esc_url($url_1); ?>" class="lum-card-read" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;">Read Article</a>
                             </div>
                         </div>
                     </div>
@@ -316,7 +443,11 @@ function lumora_journal() {
                         </div>
                         <div class="elementor-widget">
                             <div class="elementor-widget-container">
-                                <a href="#" class="lum-card-read" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;">Read Article</a>
+                                <?php
+                                $post_2 = get_page_by_title('Where the City Pauses: Inside the Riverside Quarter', OBJECT, 'post');
+                                $url_2 = $post_2 ? get_permalink($post_2->ID) : '#';
+                                ?>
+                                <a href="<?php echo esc_url($url_2); ?>" class="lum-card-read" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;">Read Article</a>
                             </div>
                         </div>
                     </div>
@@ -351,7 +482,11 @@ function lumora_journal() {
                         </div>
                         <div class="elementor-widget">
                             <div class="elementor-widget-container">
-                                <a href="#" class="lum-card-read" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;">Read Article</a>
+                                <?php
+                                $post_3 = get_page_by_title('The LUMORA Market Letter: Reading the Signals', OBJECT, 'post');
+                                $url_3 = $post_3 ? get_permalink($post_3->ID) : '#';
+                                ?>
+                                <a href="<?php echo esc_url($url_3); ?>" class="lum-card-read" style="display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:0.16em;text-transform:uppercase;color:#12233A;text-decoration:none;">Read Article</a>
                             </div>
                         </div>
                     </div>
@@ -526,15 +661,39 @@ add_shortcode( 'lumora_footer', 'lumora_footer' );
           (Pages → Home → Edit → paste shortcode → Update)
    =================================================================== */
 function lumora_homepage() {
-    return lumora_header()
-         . lumora_hero()
+    return lumora_hero()
          . lumora_stats()
+         . lumora_listings()
          . lumora_about()
          . lumora_journal()
-         . lumora_contact()
-         . lumora_footer();
+         . lumora_contact();
 }
 add_shortcode( 'lumora_homepage', 'lumora_homepage' );
+
+/* ===================================================================
+   SINGLE POST IMAGES — auto-inject journal images into post content
+   =================================================================== */
+add_filter( 'the_content', function( $content ) {
+    if ( is_singular('post') && in_the_loop() && is_main_query() ) {
+        global $post;
+        $title = $post->post_title;
+        $img = '';
+        
+        if ( strpos($title, 'Architectural Details') !== false ) {
+            $img = lumora_img('journal_1');
+        } elseif ( strpos($title, 'Where the City Pauses') !== false ) {
+            $img = lumora_img('journal_2');
+        } elseif ( strpos($title, 'Market Letter') !== false ) {
+            $img = lumora_img('journal_3');
+        }
+        
+        if ( $img ) {
+            $img_html = '<img src="' . esc_url($img) . '" alt="' . esc_attr($title) . '" class="lum-post-hero-image" />';
+            return $img_html . $content;
+        }
+    }
+    return $content;
+});
 
 /* ===================================================================
    HEADER + FOOTER TEMPLATE OVERRIDES (Hello Elementor theme)
@@ -569,8 +728,12 @@ add_action( 'template_redirect', function () {
 } );
 
 /* Remove Hello Elementor default header/footer so ours renders cleanly */
-function lumora_override_theme_templates() {
-    remove_all_actions( 'elementor/header' );
-    remove_all_actions( 'elementor/footer' );
-}
-add_action( 'wp', 'lumora_override_theme_templates', 99 );
+add_filter( 'hello_elementor_display_header_footer', '__return_false' );
+
+add_action( 'wp_body_open', function() {
+    echo lumora_header();
+} );
+
+add_action( 'wp_footer', function() {
+    echo lumora_footer();
+}, 1 );
