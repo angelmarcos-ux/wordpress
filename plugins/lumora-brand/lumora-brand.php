@@ -148,7 +148,7 @@ function lumora_stats() {
     ob_start(); ?>
     <section class="lum-stat-band elementor-section" style="background:#fff;">
         <div class="elementor-container" style="max-width:1320px;margin:0 auto;">
-            <div class="elementor-widget-wrap" style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;width:100%;">
+            <div class="elementor-widget-wrap lum-grid-stats">
                 <div class="elementor-widget lum-stat" data-lum-reveal>
                     <div class="elementor-widget-container">
                         <div class="lum-stat-num" style="font-size:56px;color:#12233A;">$2.4<span style="color:#C9A25F;">B</span></div>
@@ -206,7 +206,7 @@ function lumora_listings() {
         </div>
 
         <div class="elementor-container" style="max-width:1320px;margin:0 auto;">
-            <div class="elementor-widget-wrap lum-card-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;width:100%;">
+            <div class="elementor-widget-wrap lum-card-grid lum-grid-3">
 
                 <!-- LISTING 1 -->
                 <article class="lum-card elementor-widget" data-lum-reveal>
@@ -300,7 +300,7 @@ function lumora_about() {
     ob_start(); ?>
     <section id="about" class="lum-about-section elementor-section" style="background:#F6F2EA;">
         <div class="elementor-container" style="max-width:1320px;margin:0 auto;">
-            <div class="elementor-widget-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;width:100%;">
+            <div class="elementor-widget-wrap lum-grid-about">
 
                 <div class="lum-about-img elementor-widget" data-lum-reveal>
                     <div class="elementor-widget-container">
@@ -373,7 +373,7 @@ function lumora_journal() {
         </div>
 
         <div class="elementor-container" style="max-width:1320px;margin:0 auto;">
-            <div class="elementor-widget-wrap" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;width:100%;">
+            <div class="elementor-widget-wrap lum-grid-3">
 
                 <!-- CARD 1: Architectural Details -->
                 <article class="lum-card elementor-widget" data-lum-reveal>
@@ -509,7 +509,7 @@ function lumora_contact() {
     <section id="contact" class="lum-section elementor-section" style="background:#12233A;color:#F6F2EA;overflow:hidden;position:relative;">
         <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 10%, rgba(201,162,95,0.14), transparent 60%);pointer-events:none;"></div>
         <div class="elementor-container" style="max-width:1320px;margin:0 auto;position:relative;">
-            <div class="elementor-widget-wrap" style="display:grid;grid-template-columns:1.1fr 1fr;gap:64px;align-items:center;width:100%;">
+            <div class="elementor-widget-wrap lum-grid-contact">
 
                 <div class="elementor-widget" data-lum-reveal>
                     <div class="elementor-widget-container">
@@ -581,7 +581,7 @@ function lumora_footer() {
     ob_start(); ?>
     <footer class="lum-footer-section elementor-section lum-footer" style="background:#0B1729;color:#F6F2EA;">
         <div class="elementor-container" style="max-width:1320px;margin:0 auto;">
-            <div class="elementor-widget-wrap" style="display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:48px;width:100%;">
+            <div class="elementor-widget-wrap lum-grid-footer">
 
                 <div class="elementor-widget" data-lum-reveal>
                     <div class="elementor-widget-container">
